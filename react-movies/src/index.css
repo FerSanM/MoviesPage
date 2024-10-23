@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body{
+  font-family: "Montserrat", sans-serif;;
+}
+.navButton{
+    transition: transform 0.6s ease-in-out !important;
+}
+.navButton:hover{
+    color: aqua;
+    transform: scale(1.05); 
+}
+.btnPopular.Active{
+  background-color: rgb(0, 183, 255);
+  color: white;
+}
+.btnTrailer.Active{
+  background-color: rgb(0, 183, 255);
+  color: black;
+}
+.btnPopular{
+  transition: background-color 0.3s ease-out;
+}
+.btnTrailer{
+  transition: background-color 0.3s ease-out;
+}
+.popularContainer{
+  border: 1px solid #585858;
+}
+.movieContainer{
+  position: relative;
+}
+.popularTrailer{
+  border: 1px solid #ffffff;
+}
+.movieContainer::-webkit-scrollbar {
+  width: 20px;
+  height: 8px;
+}
+.movieContainer::-webkit-scrollbar-thumb {
+  background-color: #1fadff;
+  border-radius: 20px; 
+}
+.movieContainer::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.imgAPI{
+  aspect-ratio: 16/9;  
+}
