@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getPopularMovies } from "./services/movieService";
+import { Link } from "react-router-dom";
 
 export function Popular() {
   const [activeTab, setActiveTab] = useState(0);
@@ -84,9 +85,9 @@ export function Popular() {
               )}
             </div>
             <div className="mt-2">
-              <a href="" className="font-semibold hover:text-cyan-400">
+              <Link to={`/${activeTab === 0 ? "movie" : "tv"}/${movie.id}`} className="font-semibold hover:text-cyan-400">
                 {movie.title || movie.name}
-              </a>
+              </Link>
               <br />
               {activeTab !== 2 && (
                 <span>{movie.release_date || movie.first_air_date}</span>
