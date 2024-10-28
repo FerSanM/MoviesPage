@@ -40,7 +40,10 @@ export function Popular() {
   };
 
   return (
-    <section id="popular" className="popularSection w-5/6 m-auto mt-10 h-[400px] ps-12 pe-12">
+    <section
+      id="popular"
+      className="popularSection w-5/6 m-auto mt-10 h-[400px] ps-12 pe-12"
+    >
       <div className="relative overflow-hidden flex ps-2">
         <h3 className="text-xl font-semibold me-5">Lo mas Popular</h3>
         <div className="popularContainer flex rounded-full">
@@ -69,30 +72,32 @@ export function Popular() {
       >
         {movies.map((movie) => (
           <article key={movie.id} className="flex-col text-center mt-10 px-2">
-            <div className="w-40 h-auto">
-              {activeTab === 2 ? (
-                <img
-                  src={`https://image.tmdb.org/t/p/w185${movie.profile_path}`}
-                  alt={movie.name}
-                  className="imgAPI rounded-xl h-56 w-40"
-                />
-              ) : (
-                <img
-                  src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
-                  alt={movie.title || movie.name}
-                  className="imgAPI rounded-xl h-56 w-40"
-                />
-              )}
-            </div>
-            <div className="mt-2">
-              <Link to={`/${activeTab === 0 ? "movie" : "tv"}/${movie.id}`} className="font-semibold hover:text-cyan-400">
-                {movie.title || movie.name}
-              </Link>
-              <br />
-              {activeTab !== 2 && (
-                <span>{movie.release_date || movie.first_air_date}</span>
-              )}
-            </div>
+            <Link
+              to={`/${activeTab === 0 ? "movie" : "tv"}/${movie.id}`}
+            >
+              <div className="w-40 h-auto">
+                {activeTab === 2 ? (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w185${movie.profile_path}`}
+                    alt={movie.name}
+                    className="imgAPI rounded-xl h-56 w-40"
+                  />
+                ) : (
+                  <img
+                    src={`https://image.tmdb.org/t/p/w185${movie.poster_path}`}
+                    alt={movie.title || movie.name}
+                    className="imgAPI rounded-xl h-56 w-40"
+                  />
+                )}
+              </div>
+              <div className="mt-2">
+                <span className="hover:text-cyan-400">{movie.title || movie.name}</span>
+                <br />
+                {activeTab !== 2 && (
+                  <span>{movie.release_date || movie.first_air_date}</span>
+                )}
+              </div>
+            </Link>
           </article>
         ))}
       </div>

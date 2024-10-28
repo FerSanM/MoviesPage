@@ -2,15 +2,12 @@ import LiveTvIcon from "@mui/icons-material/LiveTv";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 mt-10 text-white py-8">
+    <footer className="bg-gray-900 mt-10 relative w-full text-white py-10">
       <div className="container mx-auto flex flex-col md:flex-row justify-evenly items-center">
-        {/* Logo or brand name */}
         <div className="text-lg font-bold mb-4 md:mb-0">
           <LiveTvIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <a href="#">Movies</a>
         </div>
-
-        {/* Navigation links */}
         <nav className="mb-4 md:mb-0">
           <ul className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 text-sm">
             <li>
@@ -35,8 +32,6 @@ export function Footer() {
             </li>
           </ul>
         </nav>
-
-        {/* Social Media Icons */}
         <div className="flex space-x-4 text-sm">
           <a href="#" className="hover:text-gray-400" aria-label="Facebook">
             <svg
@@ -70,8 +65,6 @@ export function Footer() {
           </a>
         </div>
       </div>
-
-      {/* Copyright Text */}
       <div className="text-center mt-4 text-gray-400 text-xs">
         &copy; 2024 Movies. All rights reserved.
       </div>
