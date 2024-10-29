@@ -23,8 +23,8 @@ export const getPopularMovies = async (type) => {
   }
 };
 
-export const getCredits = async (movie_id) => {
-  const response = await axios.get(`${BASE_URL}/movie/${movie_id}/credits`,{
+export const getCredits = async (movie_id, type) => {
+  const response = await axios.get(`${BASE_URL}/${type}/${movie_id}/credits`,{
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
     },
@@ -33,7 +33,7 @@ export const getCredits = async (movie_id) => {
       page: 1
     },
   });
-  return response.data.results;
+  return response.data.crew.filter((credit) => credit.job === 'Director' || credit.job === 'Novel' || credit.job === 'Songs' || credit.job === 'Story' || credit.job === 'Characters' || credit.job === 'Writer' || credit.job === 'Screenplay');
 }
 
 export const getRealiseDate = async (movie_id) => {

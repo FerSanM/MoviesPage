@@ -91,7 +91,7 @@ export function Popular() {
                 )}
               </div>
               <div className="mt-2">
-                <span className="hover:text-cyan-400">{movie.title || movie.name}</span>
+                <span className="hover:text-cyan-400 font-semibold">{movie.title || movie.name}</span>
                 <br />
                 {activeTab !== 2 && (
                   <span>{movie.release_date || movie.first_air_date}</span>
