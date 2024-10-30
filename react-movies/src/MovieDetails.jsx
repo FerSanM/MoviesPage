@@ -13,7 +13,6 @@ export function MovieDetails() {
   const [details, setMovieDetails] = useState(null);
   const [release, setRealiseData] = useState(null);
   const [credits, setCredits] = useState(null);
-  
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -153,8 +152,8 @@ export function MovieDetails() {
           </div>
           <div className="grid grid-cols-4">
             {credits.length > 0 ? (
-              credits.map((credit) => (
-                <article key={credit.id} className="pt-5">
+              credits.map((credit, index) => (
+                <article key={`${credit.id}-${index}`} className="pt-5">
                   <span className="font-bold">{credit.name}</span>
                   <br />
                   <span className="text-sm">{credit.job}</span>

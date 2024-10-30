@@ -5,7 +5,6 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
 import LinkIcon from "@mui/icons-material/Link";
-import Divider, { dividerClasses } from '@mui/material/Divider';
 
 export function Actors() {
   const { id, type } = useParams();
@@ -24,6 +23,8 @@ export function Actors() {
 
         setPage(pageData);
         setActors(actorsData);
+        console.log(actorsData);
+        
         setExternalId(externalData);
         setDetails(detailsData);
       } catch (error) {
@@ -44,12 +45,12 @@ export function Actors() {
             {" "}
             {actors.map((actor) => (
               <article
-                key={actor.name}
+                key={actor.id}
                 className="flex-col mx-3 rounded-xl shadow-md text-center mt-4"
               >
                 <div className="w-40 h-auto">
                   <img
-                    src={`https://image.tmdb.org/t/p/w185${actor.profile_path}`}
+                    src={actor.profile_path !== null ? `https://image.tmdb.org/t/p/w185${actor.profile_path}` : "/img/noImage.png"}
                     alt={actor.name}
                     className="imgAPI rounded-t-xl h-56 object-cover"
                   />
