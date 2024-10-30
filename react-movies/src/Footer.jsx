@@ -2,7 +2,7 @@ import LiveTvIcon from "@mui/icons-material/LiveTv";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 mt-10 relative w-full text-white py-10">
+    <footer className="bg-gray-900 relative bottom-0 w-full text-white py-10">
       <div className="container mx-auto flex flex-col md:flex-row justify-evenly items-center">
         <div className="text-lg font-bold mb-4 md:mb-0">
           <LiveTvIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />

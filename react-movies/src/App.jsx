@@ -9,6 +9,7 @@ import { Footer } from "./Footer";
 import { MovieDetails } from "./MovieDetails";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Actors } from "./Actors";
+import { Search } from "./Search";
 function App() {
   return (
     <Router>
@@ -26,6 +27,7 @@ function App() {
             </>
           }
         />
+        <Route path="/search/:query" element={<Search />} />
         <Route
           path="/:type/:id"
           element={

@@ -23,6 +23,25 @@ export const getPopularMovies = async (type) => {
   }
 };
 
+export const getSearchData = async (query) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/search/multi`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+      },
+      params: {
+        query: query,
+        language: 'es-MX',
+        page: 1,
+      }
+    });
+    console.log(response.data.results);
+    return response.data.results;
+  } catch (error) {
+    console.error("error al buscar", error);
+  }
+}
+
 export const getCredits = async (movie_id, type) => {
   const response = await axios.get(`${BASE_URL}/${type}/${movie_id}/credits`,{
     headers: {

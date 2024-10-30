@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"; // Importa useNavigate
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,6 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { styled, alpha } from "@mui/material";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
+import { useState } from "react";
 
 const pages = ["Peliculas", "Series", "Personas"];
 
@@ -36,7 +38,6 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
   position: "absolute",
-  pointerEvents: "none",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -47,7 +48,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
@@ -60,13 +60,28 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export function Navigation() {
+  const [query, setQuery] = useState("");
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+
+  const handleSearchSubmit = (e) => {
+    if (e.key === "Enter" && query.trim()) {
+      navigate(`/search/${query}`);
+    }
+  };
+
+  const handleIconClick = () => {
+    if (query.trim()) {
+      navigate(`/search/${query}`);
+    }
   };
 
   return (
@@ -96,7 +111,6 @@ export function Navigation() {
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
-                aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
@@ -141,12 +155,15 @@ export function Navigation() {
               ))}
             </Box>
             <Search>
-              <SearchIconWrapper>
+              <SearchIconWrapper onClick={handleIconClick}>
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Buscar"
                 inputProps={{ "aria-label": "search" }}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={handleSearchSubmit}
               />
             </Search>
           </Toolbar>
