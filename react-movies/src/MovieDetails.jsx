@@ -13,6 +13,7 @@ export function MovieDetails() {
   const [details, setMovieDetails] = useState(null);
   const [release, setRealiseData] = useState(null);
   const [credits, setCredits] = useState(null);
+  
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -161,9 +162,15 @@ export function MovieDetails() {
               ))
             ) : (
               <article key={details.created_by.name} className="pt-5">
-                <span className="font-bold">{details.created_by.length > 0 ? details.created_by[0].name : ""}</span>
+                <span className="font-bold">
+                  {details.created_by.length > 0
+                    ? details.created_by[0].name
+                    : ""}
+                </span>
                 <br />
-                <span className="text-sm">{details.created_by.length > 0 ? "Creador" : ""}</span>
+                <span className="text-sm">
+                  {details.created_by.length > 0 ? "Creador" : ""}
+                </span>
               </article>
             )}
           </div>

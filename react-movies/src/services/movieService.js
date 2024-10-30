@@ -36,6 +36,31 @@ export const getCredits = async (movie_id, type) => {
   return response.data.crew.filter((credit) => credit.job === 'Director' || credit.job === 'Novel' || credit.job === 'Songs' || credit.job === 'Story' || credit.job === 'Characters' || credit.job === 'Writer' || credit.job === 'Screenplay');
 }
 
+export const getActors = async (movie_id, type) => {
+  const response = await axios.get(`${BASE_URL}/${type}/${movie_id}/credits`,{
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+    },
+    params: {
+      language: "es-MX",
+      page: 1
+    },
+  });
+  return response.data.cast;
+}
+export const getExternalId = async (data_id, type) => {
+  const response = await axios.get(`${BASE_URL}/${type}/${data_id}/external_ids`,{
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+    },
+    params:{
+      language: "es-MX",
+      page: 1
+    },
+  });
+  return response.data;
+}
+
 export const getRealiseDate = async (movie_id) => {
   const response = await axios.get(`${BASE_URL}/movie/${movie_id}/release_dates`,{
     headers: {
@@ -73,14 +98,34 @@ export const getMovieDetails = async (movie_id, type) => {
         Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
       },
       params: {
+        language: "en-US",
         page: 1,
       },
     });
+    console.log(responseMX.data.overview);
+    
     if (responseMX.data.overview === ""){
       return responseUS.data;
     }else{
       return responseMX.data;
     }
+    
+  } catch (error) {
+    console.error("error fetching movie details", error);
+  }
+};
+export const getPage = async (movie_id, type) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/${type}/${movie_id}`, {
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+      },
+      params: {
+        language: "en-US",
+        page: 1,
+      },
+    });
+    return response.data.homepage;
     
   } catch (error) {
     console.error("error fetching movie details", error);

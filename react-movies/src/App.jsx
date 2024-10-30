@@ -8,6 +8,7 @@ import { Trending } from "./Trending";
 import { Footer } from "./Footer";
 import { MovieDetails } from "./MovieDetails";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Actors } from "./Actors";
 function App() {
   return (
     <Router>
@@ -25,7 +26,15 @@ function App() {
             </>
           }
         />
-        <Route path="/:type/:id" element={<MovieDetails />} />
+        <Route
+          path="/:type/:id"
+          element={
+            <>
+              <MovieDetails />
+              <Actors />
+            </>
+          }
+        />
       </Routes>
       <Footer />
     </Router>
